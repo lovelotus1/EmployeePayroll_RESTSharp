@@ -52,5 +52,45 @@ namespace RESTSharpTest
                 Console.WriteLine("id: " + item.id + "\tName: " + item.name + "\tSalary: " + item.salary);
             }
         }
+        [TestMethod]
+        public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
+        {
+            // Request the client by giving resource url and method to perform
+            RestRequest request = new RestRequest("/employees", Method.POST);
+
+            JObject jObjectbody = new JObject();
+            jObjectbody.Add("name", "Natasha Romanuff");
+            jObjectbody.Add("Salary", "85000");
+            request.AddParameter("application/json", jObjectbody, ParameterType.RequestBody);
+
+            // Executing the request using client and saving the result in IrestResponse.
+            IRestResponse response = client.Execute(request);
+            Employee employeeList = JsonConvert.DeserializeObject<Employee>(response.Content);
+
+            // Assert
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Created);
+            Assert.AreEqual("Natasha Romanuff", employeeList.name);
+            Assert.AreEqual(85000, employeeList.salary);
+        }
+        [TestMethod]
+        public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
+        {
+            // Request the client by giving resource url and method to perform
+            RestRequest request = new RestRequest("/employees", Method.POST);
+
+            JObject jObjectbody = new JObject();
+            jObjectbody.Add("name", "Natasha Romanuff");
+            jObjectbody.Add("Salary", "60000");
+            request.AddParameter("application/json", jObjectbody, ParameterType.RequestBody);
+
+            // Executing the request using client and saving the result in IrestResponse.
+            IRestResponse response = client.Execute(request);
+            Employee employeeList = JsonConvert.DeserializeObject<Employee>(response.Content);
+
+            // Assert
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Created);
+            Assert.AreEqual("Natasha Romanuff", employeeList.name);
+            Assert.AreEqual(85000, employeeList.salary);
+        }
     }
 }
