@@ -139,4 +139,16 @@ namespace RESTSharpTest
         Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         Assert.AreEqual(dataResponse.salary, 60000);
     }
+    [TestMethod]
+    public void GivenEmployee_WhenDeleted_ShouldReturnStatusOk()
+    {
+        // Making a request for a particular employee to be deleted
+        RestRequest request = new RestRequest("/Employees/7", Method.DELETE);
+
+        // Executing the request using client and saving the result in IrestResponse.            
+        IRestResponse response = client.Execute(request);
+
+        // Assert
+        Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+    }
 }
