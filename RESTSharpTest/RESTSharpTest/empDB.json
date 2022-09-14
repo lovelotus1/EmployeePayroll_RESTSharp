@@ -1,0 +1,24 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Tony Stark",
+            "salary": "80000"
+        },
+        {
+            "id": 2,
+            "name": "Steve Rogers",
+            "Salary": "85000"
+        },
+        {
+            "id": 3,
+            "name": "Peter Parker",
+            "Salary": "100000"
+        },
+        {
+            "id": 4,
+            "name": "Bruce Banner",
+            "Salary": "90000"
+        }
+    ]
+}
