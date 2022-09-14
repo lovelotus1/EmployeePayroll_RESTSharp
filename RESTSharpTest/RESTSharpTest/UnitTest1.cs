@@ -120,4 +120,23 @@ namespace RESTSharpTest
             Assert.AreEqual(employee.salary, dataResponse.salary);
         }
     }
+    [TestMethod]
+    public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
+    {
+        // Making a request for a particular employee to be updated
+        RestRequest request = new RestRequest("employees/5", Method.PUT);
+
+        JObject jobject = new JObject();
+        jobject.Add("name", "Natasha Romanoff");
+        jobject.Add("salary", 60000);
+        request.AddParameter("application/json", jobject, ParameterType.RequestBody);
+
+        // Executing the request using client and saving the result in IrestResponse.            
+        IRestResponse response = client.Execute(request);
+        Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+
+        // Assert
+        Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+        Assert.AreEqual(dataResponse.salary, 60000);
+    }
 }
